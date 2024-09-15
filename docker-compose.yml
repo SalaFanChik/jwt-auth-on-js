@@ -9,7 +9,7 @@ services:
     depends_on:
       - express
     environment:
-      - NEXT_PUBLIC_API_URL=http://express:4500
+      - NEXT_PUBLIC_API_URL=http://localhost:4500
     volumes:
       - ./client:/app
       - /app/node_modules
