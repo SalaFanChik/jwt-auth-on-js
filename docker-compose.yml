@@ -1,0 +1,60 @@
+services:
+  nextjs:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - express
+    environment:
+      - NEXT_PUBLIC_API_URL=http://express:4500
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    networks:
+      - app-network
+
+  express:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "4500:4500"
+    environment:
+      - PORT=4500
+      - DB_NAME=wt2
+      - DB_USER=postgres
+      - DB_PASSWORD=test123
+      - DB_HOST=db
+      - DB_PORT=5432
+      - JWT_SECRET=supersecret
+      - JWT_REFRESH_SECRET=supersecret
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    networks:
+      - app-network
+
+  db:
+    image: postgres:14
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=wt2
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=test123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pgdata:
