@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   nextjs:
     build:
@@ -11,8 +13,10 @@ services:
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:4500
     volumes:
+      # Монтируем папку client, кроме .next
       - ./client:/app
       - /app/node_modules
+      - /app/.next
     networks:
       - app-network
 

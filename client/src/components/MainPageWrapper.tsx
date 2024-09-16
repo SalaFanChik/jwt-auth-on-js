@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 
-export const MainPageWrapper = async() => {
+export const MainPageWrapper = () => {
   const router = useRouter();
   
   useEffect(() => {
