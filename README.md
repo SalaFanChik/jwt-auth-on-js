@@ -27,6 +27,6 @@ docker-compose build --no-cache
 docker-compose up -d db
 docker-compose up -d express
 docker-compose up -d nextjs
+```
 
 http://localhost:3000/register - переходите и регистрируйтесь
-```
