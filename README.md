@@ -22,11 +22,11 @@
 
 ```bash
 git clone https://github.com/SalaFanChik/jwt-auth-on-js
-cd <имя-репозитория>
+cd jwt-auth-on-js
 docker-compose build --no-cache
 docker-compose up -d db
 docker-compose up -d express
 docker-compose up -d nextjs
 ```
 
-http://localhost:3000/register - переходите и регистрируйтесь
+http://localhost:3000 - переходите и регистрируйтесь
